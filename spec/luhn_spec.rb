@@ -26,7 +26,7 @@ RSpec.describe Tools::Luhn do
 
   it 'becomes invalid if string reversed' do
     my_string = Tools::Luhn.new('59')
-    expect(my_string.invalid?).to be false
+    expect(my_string.reverse_valid?).to be false
   end
 
   it 'valid Canadian sin' do
