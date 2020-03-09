@@ -12,11 +12,12 @@ module Tools
       true
     end
 
-    def invalid?
+    def reverse_valid?
       @str.reverse == false
     end
 
-    def luhn
+    def luhn_valid?(@str.to_i)
+      
     end
   end
 end
