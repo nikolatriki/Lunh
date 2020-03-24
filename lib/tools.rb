@@ -9,8 +9,10 @@ module Tools
     def valid?
       return false if @stripped.length <= 1
 
-      # making an array
+      # reversing string input
+      @stripped.reverse
       
+
       true
     end
   end
