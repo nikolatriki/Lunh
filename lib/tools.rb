@@ -16,7 +16,8 @@ module Tools
       reversed_array = reversed_strip.chars #characters to array
       puts "reversed_array: #{reversed_array}"
       every_second_range = (1..reversed_array.length-1).step(2)
-      every_second_array = every_second_range.map {|i| reversed_array[i]}
+      puts "every second range: #{every_second_range.to_a}"
+      every_second_array = every_second_range.map {|i| reversed_array[i].to_i}
       puts "every_second_array: #{every_second_array}"
 
       true
