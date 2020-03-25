@@ -3,25 +3,44 @@ require "tools/version"
 module Tools
   class Luhn
     def initialize(str)
-      @str = str
+      @stripped = str.delete(' ')
     end
 
     def valid?
-      return false if @str.length <= 1
+      # Validations
+      return false if @stripped.length <= 1
+      return false if /\D/.match?(@stripped)
 
-      stripped = @str.delete(' ')
-      puts "stripped: #{stripped}"
-      reversed_strip = stripped.reverse
-      puts "reversed_strip: #{reversed_strip}"
-      reversed_array = reversed_strip.chars #characters to array
-      puts "reversed_array: #{reversed_array}"
-      every_second_range = (1..reversed_array.length-1).step(2)
-      puts "every second range: #{every_second_range.to_a}"
-      every_second_array = every_second_range.map {|i| reversed_array[i].to_i}
-      puts "every_second_array: #{every_second_array}"
-
-      true
+      # Calculation
+      (rest_of_the_elements + checksum).sum % 10 == 0
     end
+
+    private
+
+    def checksum
+      every_second_digit_from_right.map do |elem|
+        double = elem * 2
+        double > 9 ? double - 9 : double
+      end
+    end
+
+    def every_second_digit_from_right
+      indexes(1).map { |i| reversed_array[i].to_i }
+    end
+
+    def rest_of_the_elements
+      indexes.map { |i| reversed_array[i].to_i }
+    end
+
+    def reversed_array
+      @stripped.reverse.chars
+    end
+
+    def indexes(inx = 0)
+      (inx..@stripped.length - 1).step(2)
+    end
+  end
+end
 
   #   def reverse_valid?
   #     @str.reverse == false
@@ -61,7 +80,3 @@ module Tools
   #     n = @str
   #     n.split(//).map(&:to_i)
   #   end
-
-
-  end
-end
