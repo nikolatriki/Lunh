@@ -40,43 +40,76 @@ module Tools
       (inx..@stripped.length - 1).step(2)
     end
   end
+
+  # ALLERGIES EXERCISE
+
+  # class Allergies
+  #   ALLERGENS = {
+  #     1 => 'eggs',
+  #     2 => 'peanuts',
+  #     4 => 'shellfish',
+  #     8 => 'strawberries',
+  #     16 => 'tomatoes',
+  #     32 => 'chocolate',
+  #     64 => 'pollen',
+  #     128 => 'cats'
+  #   }
+  #   def initialize(score)
+  #     @score = score
+  #   end
+
+  #   def allergic_to?(allergen)
+  #     score_allergens.include?(allergen)
+  #   end
+
+  #   # def listing
+  #   #   puts 'empty'
+  #   # end
+
+  #   private
+
+  #   def keys_all
+  #     ALLERGENS.keys.select { |key| key <= @score }.sort.reverse
+  #   end
+
+  #   def allergen_keys
+  #     tmp = @score
+  #     keys_all.select { |elem| tmp >= elem $$ tmp -= elem }
+  #   end
+
+  #   def score_allergens
+  #     allergen_keys.map { |key| ALLERGENS[key] }
+  #   end
+  # end
+
+  # RESISTORS
+
+  class Resistors
+    COLORS = [
+      'black',
+      'brown',
+      'red',
+      'orange',
+      'yellow',
+      'green',
+      'blue',
+      'violet',
+      'grey',
+      'white'
+    ]
+
+    def value(color_inp1, color_inp2, *)
+      (index1(color_inp1) + index2(color_inp2)).to_i
+    end
+
+    private
+
+    def index1(color_inp1)
+      COLORS.index { |i| i == color_inp1}.to_s
+    end
+
+    def index2(color_inp2)
+      COLORS.index { |i| i == color_inp2}.to_s
+    end
+  end
 end
-
-  #   def reverse_valid?
-  #     @str.reverse == false
-  #   end
-
-  #   # A method for testing if the number is Luhn valid
-  #   def luhn_valid?
-  #     luhn_checksum.zero?
-  #   end
-
-  #   # Computing if the sum has residual when divided by 10
-  #   def luhn_checksum
-  #     sum_up % 10
-  #   end
-
-  #   # Summing up all the digits
-  #   def sum_up
-  #     luhn_alg.inject(:+)
-  #   end
-
-  #   # The luhn algorithm
-  #   def luhn_alg
-  #     n = @str
-  #     digits_of = digits_of(n)
-  #     numbers = digits_of(n)
-  #     numbers.reverse.map.with_index do |a, b|
-  #       if b.odd?
-  #         t = a * 2
-  #         t > 9 ? digits_of(t).inject(:+) : t
-  #       else
-  #         a
-  #       end
-  #     end
-  #   end
-
-  #   def digits_of
-  #     n = @str
-  #     n.split(//).map(&:to_i)
-  #   end
