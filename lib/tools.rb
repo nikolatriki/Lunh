@@ -98,8 +98,13 @@ module Tools
       'white'
     ]
 
-    def value(color1, color2, *)
-      (index1(color1) + index1(color2)).to_i
+    def initialize(color1, color2, *)
+      @color1 = color1
+      @color2 = color2
+    end
+
+    def value
+      (index1(@color1) + index1(@color2)).to_i
     end
 
     private
