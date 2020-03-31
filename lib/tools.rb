@@ -98,18 +98,15 @@ module Tools
       'white'
     ]
 
-    def value(color_inp1, color_inp2, *)
-      (index1(color_inp1) + index2(color_inp2)).to_i
+    def value(color1, color2, *)
+      (index1(color1) + index1(color2)).to_i
     end
 
     private
 
-    def index1(color_inp1)
-      COLORS.index { |i| i == color_inp1}.to_s
+    def index1(colorx)
+      COLORS.index { |i| i == colorx }.to_s
     end
 
-    def index2(color_inp2)
-      COLORS.index { |i| i == color_inp2}.to_s
-    end
   end
 end
