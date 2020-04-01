@@ -43,44 +43,41 @@ module Tools
 
   # ALLERGIES EXERCISE
 
-  # class Allergies
-  #   ALLERGENS = {
-  #     1 => 'eggs',
-  #     2 => 'peanuts',
-  #     4 => 'shellfish',
-  #     8 => 'strawberries',
-  #     16 => 'tomatoes',
-  #     32 => 'chocolate',
-  #     64 => 'pollen',
-  #     128 => 'cats'
-  #   }
-  #   def initialize(score)
-  #     @score = score
-  #   end
+  class Allergies
+    ALLERGENS = {
+      1 => 'eggs',
+      2 => 'peanuts',
+      4 => 'shellfish',
+      8 => 'strawberries',
+      16 => 'tomatoes',
+      32 => 'chocolate',
+      64 => 'pollen',
+      128 => 'cats'
+    }
+    def initialize(score)
+      @score = score
+      @score -= 256 while @score >= 256
+    end
 
-  #   def allergic_to?(allergen)
-  #     score_allergens.include?(allergen)
-  #   end
+    def allergic_to?(allergen)
+      score_allergens.include?(allergen)
+    end
 
-  #   # def listing
-  #   #   puts 'empty'
-  #   # end
+    def score_allergens
+      allergen_keys.map { |key| ALLERGENS[key] }
+    end
 
-  #   private
+    private
 
-  #   def keys_all
-  #     ALLERGENS.keys.select { |key| key <= @score }.sort.reverse
-  #   end
+    def keys_all
+      ALLERGENS.keys.select { |key| key <= @score }.sort.reverse
+    end
 
-  #   def allergen_keys
-  #     tmp = @score
-  #     keys_all.select { |elem| tmp >= elem $$ tmp -= elem }
-  #   end
-
-  #   def score_allergens
-  #     allergen_keys.map { |key| ALLERGENS[key] }
-  #   end
-  # end
+    def allergen_keys
+      tmp = @score
+      keys_all.select { |elem| tmp >= elem && tmp -= elem }
+    end
+  end
 
   # RESISTORS
 
