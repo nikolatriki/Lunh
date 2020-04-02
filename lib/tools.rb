@@ -41,7 +41,7 @@ module Tools
     end
   end
 
-  # ALLERGIES EXERCISE
+  # ALLERGIES ExERCISE
 
   class Allergies
     ALLERGENS = {
@@ -82,33 +82,51 @@ module Tools
   # RESISTORS
 
   class Resistors
-    COLORS = [
-      'black',
-      'brown',
-      'red',
-      'orange',
-      'yellow',
-      'green',
-      'blue',
-      'violet',
-      'grey',
-      'white'
-    ]
+    COLORS = {
+      black: { color: 0, multiplier: 1, tolerance: 20 },
+      brown: { color: 1, multiplier: 10, tolerance: 1 },
+      red: { color: 2, multiplier: 10**2, tolerance: 2 },
+      orange: { color: 3, multiplier: 10**3, tolerance: 0.05 },
+      yellow: { color: 4, multiplier: 10**4, tolerance: 0.02 },
+      green: { color: 5, multiplier: 10**5, tolerance: 0.5 },
+      blue: { color: 6, multiplier: 10**6, tolerance: 0.25 },
+      violet: { color: 7, multiplier: 10**7, tolerance: 0.1 },
+      grey: { color: 8, multiplier: 10**8, tolerance: 0.05 },
+      white: { color: 9, multiplier: 10**9, tolerance: 10 },
+      gold: { multiplier: 10**-1, tolerance: 5 },
+      silver: { multiplier: 10**-2, tolerance: 10}
+    }
 
-    def initialize(color1, color2, *)
-      @color1 = color1
-      @color2 = color2
+    attr_reader :color1, :color2
+
+    def initialize(colors)
+      @color1, @color2, @multiplier, @tolerance = colors
     end
 
-    def value
-      (index1(@color1) + index1(@color2)).to_i
+    def base
+      color(color1) * 10 + color(color2)
+    end
+
+    def specification
+      " #{base * multiplier}" + " ohms +-#{tolerance}%"
     end
 
     private
 
-    def index1(colorx)
-      COLORS.index { |i| i == colorx }.to_s
+    def multiplier
+      COLORS[@multiplier.downcase.to_sym][:multiplier]
     end
 
+    def tolerance
+      @tolerance.nil? ? 20 : COLORS[@tolerance.downcase.to_sym][:tolerance]
+    end
+
+    # def base
+    #   color(color1) * 10 + color(color2)
+    # end
+
+    def color(color_key)
+      COLORS[color_key.downcase.to_sym][:color]
+    end
   end
 end
