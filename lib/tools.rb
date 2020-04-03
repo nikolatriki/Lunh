@@ -121,12 +121,20 @@ module Tools
       @tolerance.nil? ? 20 : COLORS[@tolerance.downcase.to_sym][:tolerance]
     end
 
-    # def base
-    #   color(color1) * 10 + color(color2)
-    # end
-
     def color(color_key)
       COLORS[color_key.downcase.to_sym][:color]
+    end
+  end
+
+  class ArmstrongNumber
+    attr_reader :number
+
+    def initialize(number)
+      @number = number
+    end
+
+    def valid?
+      number.digits.map { |elem| elem**number.digits.size }.sum == number
     end
   end
 end
