@@ -146,7 +146,11 @@ module Tools
     end
 
     def antipode_out
-      summed.map { |elem| elem / 2.0 }
+      if array.count <= 1
+        array
+      else
+        summed.map { |elem| elem / 2.0 }
+      end
     end
 
     private
