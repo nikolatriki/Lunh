@@ -149,7 +149,7 @@ module Tools
       summed.map { |elem| elem / 2.0 }
     end
 
-    # private
+    private
 
     def first_array
       array.first(array.length / 2)
@@ -164,7 +164,7 @@ module Tools
     end
 
     def summed
-      transposed.map { |elem| elem.sum }
+      transposed.map(&:sum)
     end
   end
 end
