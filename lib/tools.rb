@@ -164,7 +164,7 @@ module Tools
     end
 
     def summed
-      [first_array, second_array.reverse].transpose.map { |elem| elem.sum }
+      transposed.map { |elem| elem.sum }
     end
   end
 end
