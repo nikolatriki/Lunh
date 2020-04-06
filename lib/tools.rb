@@ -1,5 +1,6 @@
-require "tools/version"
+# require "tools/version"
 
+# LUHN NUMBER >>
 module Tools
   class Luhn
     def initialize(str)
@@ -41,8 +42,7 @@ module Tools
     end
   end
 
-  # ALLERGIES ExERCISE
-
+  # ALLERGIES ExERCISE >>
   class Allergies
     ALLERGENS = {
       1 => 'eggs',
@@ -79,8 +79,7 @@ module Tools
     end
   end
 
-  # RESISTORS
-
+  # RESISTORS >>
   class Resistors
     COLORS = {
       black: { color: 0, multiplier: 1, tolerance: 20 },
@@ -126,6 +125,7 @@ module Tools
     end
   end
 
+  # ARMSTRONG NUMBER >>
   class ArmstrongNumber
     attr_reader :number
 
@@ -137,4 +137,35 @@ module Tools
       number.digits.map { |elem| elem**number.digits.size }.sum == number
     end
   end
+
+  # ANTIPODES >>
+  class Antipodes
+    attr_reader :array
+    def initialize(array)
+      @array = array
+    end
+
+    def antipode_out
+      summed.map { |elem| elem / 2.0 }
+    end
+
+    # private
+
+    def first_array
+      array.first(array.length / 2)
+    end
+
+    def second_array
+      array.last(array.length / 2)
+    end
+
+    def transposed
+      [first_array, second_array.reverse].transpose
+    end
+
+    def summed
+      [first_array, second_array.reverse].transpose.map { |elem| elem.sum }
+    end
+  end
 end
+
