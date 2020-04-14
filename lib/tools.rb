@@ -193,7 +193,7 @@ module Tools
     end
 
     def first_odd
-      all_odd.first.digits
+      all_odd.first
     end
 
     def all_odd
