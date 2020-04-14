@@ -1,4 +1,4 @@
-# require "tools/version"
+require "tools/version"
 
 # LUHN NUMBER >>
 module Tools
@@ -168,8 +168,38 @@ module Tools
     end
 
     def summed
-      transposed.map(&:sum)
+      transposed.map(&:sum) # { |num| num.sum }
     end
   end
+
+  # CHOCOLATE DILEMMA >>
+  class Chocolate
+    attr_reader :subarray1, :subarray2
+
+    def initialize(subarray1, subarray2)
+      @subarray1 = subarray1
+      @subarray2 = subarray2
+    end
+
+    def fairness?
+      subarray1.map { |elem| elem.inject(:*) }.sum == subarray2.map { |elem| elem.inject(:*) }.sum
+    end
+  end
+
+  # ODD NUMBER >>
+  class OddNumber
+    def initialize(array)
+      @array = array
+    end
+
+    def first_odd
+      all_odd.first.digits
+    end
+
+    def all_odd
+      @array.group_by(&:itself).select{|k,v| v.count % 2 != 0 }.values.flatten.uniq
+    end
+  end
+
 end
 
