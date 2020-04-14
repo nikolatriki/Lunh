@@ -182,7 +182,13 @@ module Tools
     end
 
     def fairness?
-      subarray1.map { |elem| elem.inject(:*) }.sum == subarray2.map { |elem| elem.inject(:*) }.sum
+      iteration(subarray1) == iteration(subarray2)
+    end
+
+    private
+
+    def iteration(array)
+      array.map { |elem| elem.inject(:*) }.sum
     end
   end
 
