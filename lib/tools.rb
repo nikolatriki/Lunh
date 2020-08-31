@@ -203,9 +203,38 @@ module Tools
     end
 
     def all_odd
-      @array.group_by(&:itself).select{|k,v| v.count % 2 != 0 }.values.flatten.uniq
+      @array.group_by(&:itself).select{|_k,v| v.count % 2 != 0 }.values.flatten.uniq
     end
   end
+
+  # ADJUST THE TIME >>
+  # class AdjustTheTime
+  #   def initialize(timestamp_str)
+  #     @timestamp_str = timestamp_str
+  #   end
+
+  #   def strf()
+  #   end
+  # end
+
+    # POKEMON DAMAGE >>
+    # class Pokemon
+    #   def initialize()
+    #   end
+
+    #   def calculate_damage( first_type, second_type, attack_power, defence_power)
+    #     @first_type = first_type
+    #     @second_type = second_type
+    #     50 * (attack_power / defence_power) * effectiveness
+    #   end
+
+    #   def effectiveness()
+    #   end
+    # end
+
+
+
+
 
 end
 
